@@ -1,0 +1,14 @@
+.planet-card {
+  width: 120px;
+  height: 48px;
+  border: 1px solid #fff;
+  margin: 10px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 48px;
+}
+
+.planet-card:hover {
+  transform: scale(1.04);
+  transition: ease-in 0.2s;
+}
