@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Input.css";
+
 const Input = ({ onChange, value }) => {
   return (
     <input
