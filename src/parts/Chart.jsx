@@ -4,32 +4,28 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 import "./Chart.css";
+import { useContext } from "react";
+import { StateContext } from "../pages/App";
 
 const ChartPart = () => {
   let chartEl = useRef(null);
-
+  const state = useContext(StateContext);
+  const dataSets = state.dataSets;
+  console.log(dataSets);
   useEffect(() => {
     new Chart(chartEl.current, {
       type: "radar",
       label: "tatooine",
       data: {
         labels: [
+          "gravity",
           "Rotation period",
           "Orbital period",
           "diameter",
-          "gravity",
           "Surface water",
           "population",
         ],
-        datasets: [
-          {
-            label: "tatouine",
-            data: [20, 10, 4, 2, 30, 40],
-            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-            borderColor: ["rgba(255, 99, 132, 1)"],
-            borderWidth: 1,
-          },
-        ],
+        datasets: dataSets,
       },
       options: {
         scale: {
@@ -43,7 +39,7 @@ const ChartPart = () => {
         },
       },
     });
-  }, []);
+  }, [dataSets]);
 
   return (
     <div className="chart-container">

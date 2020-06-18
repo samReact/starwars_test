@@ -7,7 +7,7 @@ const CardList = ({ ready, planets }) => {
   return ready ? (
     <div className="card-list content">
       {planets.map((planet) => (
-        <PlanetCard planet={planet} />
+        <PlanetCard key={planet.name} planet={planet} />
       ))}
     </div>
   ) : (

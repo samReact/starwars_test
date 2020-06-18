@@ -10,8 +10,14 @@
   grid-template-rows: 100%;
 }
 
-.menu {
+.menu-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
   border-bottom: 1px solid #fff;
+}
+
+.menu {
   align-self: flex-end;
   width: 100%;
 }
