@@ -1,7 +1,6 @@
 import React from "react";
 import CardList from "./CardList";
 
-import "./Body.css";
 import { useContext } from "react";
 import { StateContext } from "../pages/App";
 

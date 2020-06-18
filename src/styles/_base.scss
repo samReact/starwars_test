@@ -1,0 +1,21 @@
+$theme-colors: (
+  "blue": #001e62,
+  "blue-light": #8b98b7,
+  "orange": #fe5000,
+  "orange-light": "#FEAF8B",
+  "grey": #e7eaf0,
+  "grey-light": #f0f1f2,
+  "white": #ffffff,
+  "error": #d40000,
+);
+
+$font-lato: "Lato", sans-serif;
+
+@each $key, $value in $theme-colors {
+  .text-#{$key} {
+    color: $value;
+  }
+  .bg-#{$key} {
+    background-color: $value;
+  }
+}

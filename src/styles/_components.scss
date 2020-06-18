@@ -1,0 +1,40 @@
+.custom-button {
+  @extend .text-white;
+  @extend .bg-orange;
+  font-family: $font-lato;
+  height: 40px;
+  width: 94px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  &.-rounded {
+    border-radius: 25px;
+  }
+  &:disabled {
+    @extend .bg-grey;
+    cursor: default;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.custom-input {
+  @extend .text-blue-light;
+  border: 1px solid map-get($theme-colors, "blue-light");
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 17px;
+  &:focus {
+    @extend .text-blue;
+    border: 1px solid map-get($theme-colors, "orange");
+    outline: none;
+    box-shadow: 0px 0px 5px map-get($theme-colors, "orange-light");
+  }
+  &.error {
+    @extend .text-error;
+    border: 1px solid map-get($theme-colors, "error");
+  }
+}

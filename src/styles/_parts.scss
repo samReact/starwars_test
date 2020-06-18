@@ -1,0 +1,108 @@
+.body {
+  height: 40vh;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  height: 20vh;
+  > .content {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .header {
+    height: 40vh;
+  }
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  border-bottom: 1px solid map-get($theme-colors, "blue-light");
+}
+
+.menu {
+  align-self: flex-end;
+  width: 100%;
+  ul {
+    @extend .text-blue;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    padding: 10px;
+    &.active {
+      border-bottom: 4px solid map-get($theme-colors, "blue");
+      font-weight: bold;
+    }
+  }
+}
+
+.form {
+  position: absolute;
+  top: 30px;
+  grid-column-start: 1;
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .error-message {
+    @extend .text-error;
+    padding-left: 8px;
+    position: absolute;
+    font-size: 13px;
+  }
+}
+
+.chart {
+  grid-column-start: 2;
+}
+
+.planet-card {
+  @extend .text-blue;
+  width: 120px;
+  height: 48px;
+  border: 1px solid map-get($theme-colors, "blue-light");
+  margin: 10px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  &.disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+}
+
+.planet-card:hover {
+  transform: scale(1.04);
+  transition: ease-in 0.2s;
+}

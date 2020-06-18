@@ -1,8 +1,0 @@
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  height: 20vh;
-}

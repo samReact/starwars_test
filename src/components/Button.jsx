@@ -1,10 +1,8 @@
 import React from "react";
 
-import "./Button.css";
-
-const Button = ({ title, onClick }) => {
+const Button = ({ title, onClick, disabled }) => {
   return (
-    <button className="custom-button" onClick={onClick}>
+    <button disabled={disabled} className="custom-button" onClick={onClick}>
       {title}
     </button>
   );

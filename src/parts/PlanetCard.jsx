@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import "./PlanetCard.css";
 import { DispatchContext, StateContext } from "../pages/App";
 import { ADD_DATA_SETS } from "../store/actions";
 import { useState } from "react";

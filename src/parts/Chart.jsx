@@ -3,7 +3,6 @@ import Chart from "chart.js";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-import "./Chart.css";
 import { useContext } from "react";
 import { StateContext } from "../pages/App";
 
@@ -11,11 +10,9 @@ const ChartPart = () => {
   let chartEl = useRef(null);
   const state = useContext(StateContext);
   const dataSets = state.dataSets;
-  console.log(dataSets);
   useEffect(() => {
     new Chart(chartEl.current, {
       type: "radar",
-      label: "tatooine",
       data: {
         labels: [
           "gravity",

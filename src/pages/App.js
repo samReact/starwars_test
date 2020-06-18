@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer } from "react";
 
-import "../App.css";
+import "../styles/styles.scss";
 import Footer from "../parts/Footer";
 import Body from "../parts/Body";
 import Header from "../parts/Header.jsx";
