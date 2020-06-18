@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import "./Header.css";
 import { GET_BY_NAME } from "../store/actions";
 import { DispatchContext } from "../pages/App";
+import ChartPart from "./Chart";
 
 const BASE_URL = "https://swapi.dev/api/";
 
@@ -39,12 +40,17 @@ const Header = ({ activeTab, setActiveTab, onClick }) => {
 
   return (
     <div className="header">
-      {activeTab === 2 && (
-        <form className="form">
-          <Input value={planetName} onChange={handleChange} />
-          <Button title="Search" onClick={handleSearchPlanet} />
-        </form>
-      )}
+      <div className="header-container">
+        {activeTab === 2 && (
+          <form className="form">
+            <Input value={planetName} onChange={handleChange} />
+            <Button title="Search" onClick={handleSearchPlanet} />
+          </form>
+        )}
+        <div className="chart">
+          <ChartPart />
+        </div>
+      </div>
 
       <nav className="menu">
         <ul>

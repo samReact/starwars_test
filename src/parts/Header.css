@@ -1,8 +1,13 @@
 .header {
   height: 40vh;
-  /* height: 40vh; */
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
 }
 
 .menu {
@@ -32,4 +37,9 @@
 .form {
   position: absolute;
   top: 30px;
+  grid-column-start: 1;
+}
+
+.chart {
+  grid-column-start: 2;
 }
