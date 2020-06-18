@@ -8,6 +8,7 @@ const Body = ({ activeTab, ready }) => {
   const state = useContext(StateContext);
   const planets = state.allPlanets.results;
   const filteredPlanets = state.filteredPlanets;
+
   return (
     <div className="body">
       {activeTab === 1 && <CardList ready={ready} planets={planets} />}

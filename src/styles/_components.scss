@@ -19,6 +19,16 @@
   }
 }
 
+.icon-button {
+  height: 28px;
+  width: 65px;
+  cursor: pointer;
+  border: 1px solid map-get($theme-colors, "blue");
+  &:focus {
+    outline: none;
+  }
+}
+
 .custom-input {
   @extend .text-blue-light;
   border: 1px solid map-get($theme-colors, "blue-light");

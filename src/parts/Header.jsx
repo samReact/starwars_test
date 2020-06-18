@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import { GET_BY_NAME, REMOVE_DATA_SETS } from "../store/actions";
 import { DispatchContext, StateContext } from "../pages/App";
 import ChartPart from "./Chart";
+import IconButton from "../components/IconButton";
 
 const BASE_URL = "https://swapi.dev/api/";
 
@@ -94,10 +95,13 @@ const Header = ({ activeTab, setActiveTab, onClick }) => {
             </li>
           </ul>
         </nav>
-        <div style={{ textAlign: "center" }}>
+        <div className="button-container">
           {dataSets.length > 0 && (
-            <Button
-              title="remove"
+            <IconButton
+              iconName="delete"
+              iconSize={12}
+              fill="none"
+              stroke="red"
               onClick={() => dispatch({ type: REMOVE_DATA_SETS })}
             />
           )}

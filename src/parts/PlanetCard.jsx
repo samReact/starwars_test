@@ -64,6 +64,7 @@ const PlanetCard = ({ planet }) => {
       return setDisabled("disabled ");
     }
     setDisabled(undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataSets]);
 
   return planet ? (

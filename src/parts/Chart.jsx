@@ -30,8 +30,6 @@ const ChartPart = () => {
             max: 100,
             min: 0,
             stepSize: 20,
-            // suggestedMin: 0,
-            // suggestedMax: 100,
           },
         },
       },
