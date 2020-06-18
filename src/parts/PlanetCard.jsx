@@ -3,8 +3,11 @@ import React, { useContext } from "react";
 import "./PlanetCard.css";
 import { DispatchContext, StateContext } from "../pages/App";
 import { ADD_DATA_SETS } from "../store/actions";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const PlanetCard = ({ planet }) => {
+  const [disabled, setDisabled] = useState(undefined);
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
   const dataSets = state.dataSets;
@@ -25,7 +28,6 @@ const PlanetCard = ({ planet }) => {
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
-  console.log(rotation_period);
   const colors = [
     ["rgba(0, 30, 98,0.2)", "rgba(0, 30, 98,1)"],
     ["rgba(254, 80, 0,0.2)", "rgba(254, 80, 0,1)"],
@@ -36,28 +38,37 @@ const PlanetCard = ({ planet }) => {
   ];
 
   const handleClick = () => {
-    const randomNumber = getRandomInt(6);
-    const dataColors = colors[randomNumber];
-
-    const dataSet = {
-      label: name,
-      data: [
-        1 * 50,
-        rotationNumber,
-        orbitalNumber > 100 ? 100 : orbitalNumber,
-        diameterNumber > 100 ? 100 : diameterNumber,
-        surface_water,
-        populationNumber > 0 ? 100 : 0,
-      ],
-      backgroundColor: dataColors[0],
-      borderColor: dataColors[1],
-      borderWidth: 1,
-    };
-    if (dataSets.length < 6)
-      dispatch({ type: ADD_DATA_SETS, payload: dataSet });
+    if (!disabled) {
+      const randomNumber = getRandomInt(6);
+      const dataColors = colors[randomNumber];
+      const dataSet = {
+        label: name,
+        data: [
+          1 * 50,
+          rotationNumber,
+          orbitalNumber > 100 ? 100 : orbitalNumber,
+          diameterNumber > 100 ? 100 : diameterNumber,
+          surface_water,
+          populationNumber > 0 ? 100 : 0,
+        ],
+        backgroundColor: dataColors[0],
+        borderColor: dataColors[1],
+        borderWidth: 1,
+      };
+      if (dataSets.length < 6)
+        dispatch({ type: ADD_DATA_SETS, payload: dataSet });
+    }
   };
+  useEffect(() => {
+    const disabled = dataSets.find((elt) => elt.label === name);
+    if (disabled) {
+      return setDisabled("disabled ");
+    }
+    setDisabled(undefined);
+  }, [dataSets]);
+
   return planet ? (
-    <div className="planet-card" onClick={handleClick}>
+    <div className={`planet-card ${disabled}`} onClick={handleClick}>
       {name}
     </div>
   ) : null;

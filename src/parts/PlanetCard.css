@@ -12,3 +12,7 @@
   transform: scale(1.04);
   transition: ease-in 0.2s;
 }
+
+.planet-card.disabled {
+  opacity: 0.2;
+}
