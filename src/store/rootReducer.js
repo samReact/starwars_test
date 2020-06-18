@@ -1,15 +1,19 @@
-import React from "react";
+import { GET_ALL_PLANETS, GET_BY_NAME } from "./actions";
 
 export const initialState = {
   allPlanets: {},
+  filterPlanets: {},
 };
 
-export const StoreContext = React.createContext(initialState);
-
-const reducer = (action, state) => {
-  return {
-    ...state,
-  };
-};
+function reducer(state, action) {
+  switch (action.type) {
+    case GET_ALL_PLANETS:
+      return { ...state, allPlanets: action.payload };
+    case GET_BY_NAME:
+      return { ...state, filteredPlanets: action.payload };
+    default:
+      throw new Error();
+  }
+}
 
 export default reducer;

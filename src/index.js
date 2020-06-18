@@ -3,13 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./pages/App";
 import * as serviceWorker from "./serviceWorker";
-import { StoreContext, initialState } from "./store/rootReducer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreContext.Provider value={initialState}>
-      <App />
-    </StoreContext.Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
