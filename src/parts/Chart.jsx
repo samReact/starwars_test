@@ -12,27 +12,19 @@ const ChartPart = () => {
   const [chart, setChart] = useState();
 
   const dataSets = state.dataSets;
+  const labels = state.labels;
 
   useEffect(() => {
     let chart = new Chart(chartEl.current, {
       type: "radar",
       data: {
-        labels: [
-          "gravity",
-          "Rotation period",
-          "Orbital period",
-          "diameter",
-          "Surface water",
-          "population",
-        ],
-        datasets: dataSets,
+        labels: [],
+        datasets: [],
       },
       options: {
         scale: {
           ticks: {
-            // max: 100,
             min: 0,
-            // stepSize: 20,
           },
         },
       },
@@ -45,7 +37,16 @@ const ChartPart = () => {
       chart.data.datasets = dataSets;
       chart.update();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataSets]);
+
+  useEffect(() => {
+    if (chart) {
+      chart.data.labels = labels;
+      chart.update();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [labels]);
 
   return (
     <div className="chart-container">

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { DispatchContext, StateContext } from "../pages/App";
-import { ADD_DATA_SETS } from "../store/actions";
+import { ADD_DATASET } from "../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -10,6 +10,8 @@ const PlanetCard = ({ planet }) => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
   const dataSets = state.dataSets;
+  const labels = state.labels;
+
   const {
     name,
     rotation_period,
@@ -40,22 +42,36 @@ const PlanetCard = ({ planet }) => {
     if (!disabled) {
       const randomNumber = getRandomInt(6);
       const dataColors = colors[randomNumber];
+      let gravityNumber = gravity.match(/([0-9]*[.])?[0-9]+/);
+      if (gravityNumber) {
+        gravityNumber = gravityNumber[0] * 50;
+      } else {
+        gravityNumber = 0;
+      }
+
+      const datas = [
+        gravityNumber,
+        rotationNumber,
+        orbitalNumber > 100 ? 100 : orbitalNumber,
+        diameterNumber > 100 ? 100 : diameterNumber,
+        surface_water,
+        populationNumber > 0 ? 100 : 0,
+      ];
+
       const dataSet = {
         label: name,
-        data: [
-          1 * 50,
-          rotationNumber,
-          orbitalNumber > 100 ? 100 : orbitalNumber,
-          diameterNumber > 100 ? 100 : diameterNumber,
-          surface_water,
-          populationNumber > 0 ? 100 : 0,
-        ],
+        data: [],
         backgroundColor: dataColors[0],
         borderColor: dataColors[1],
         borderWidth: 1,
       };
+      if (labels.length > 0) {
+        labels.map((label, i) => {
+          dataSet.data.push(datas[i]);
+        });
+      }
       if (dataSets.length < 6)
-        dispatch({ type: ADD_DATA_SETS, payload: dataSet });
+        dispatch({ type: ADD_DATASET, payload: { dataSet, datas } });
     }
   };
   useEffect(() => {

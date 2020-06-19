@@ -1,11 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Fragment } from "react";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { GET_BY_NAME, REMOVE_DATA_SETS } from "../store/actions";
+import {
+  GET_BY_NAME,
+  DELETE_DATASET,
+  ADD_DATA,
+  DELETE_DATA,
+} from "../store/actions";
 import { DispatchContext, StateContext } from "../pages/App";
 import ChartPart from "./Chart";
-import IconButton from "../components/IconButton";
+import ChartButton from "../components/ChartButton";
 
 const BASE_URL = "https://swapi.dev/api/";
 
@@ -15,7 +20,11 @@ const Header = ({ activeTab, setActiveTab, onClick }) => {
 
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
+
   const dataSets = state.dataSets;
+  const counter = state.counter;
+  const labels = state.labels;
+  const datas = state.datas;
 
   const handleChange = (e) => {
     setPlanetName(e.target.value);
@@ -46,6 +55,36 @@ const Header = ({ activeTab, setActiveTab, onClick }) => {
     } catch (e) {
       console.log(e);
     }
+  };
+  const labelList = [
+    "gravity",
+    "rotation_period",
+    "orbital_period",
+    "diameter",
+    "surface_water",
+    "population",
+  ];
+
+  const addData = () => {
+    let updatedDataSets = [...dataSets];
+    const label = labelList[counter];
+    updatedDataSets.forEach((dataset, i) => {
+      dataset.data.push(datas[i][counter]);
+    });
+    return dispatch({ type: ADD_DATA, payload: { label, updatedDataSets } });
+  };
+
+  const deleteData = () => {
+    let updatedLabels = [...labels];
+    let updatedDataSets = [...dataSets];
+    updatedLabels.pop();
+    updatedDataSets.forEach((dataset, i) => {
+      dataset.data.pop();
+    });
+    dispatch({
+      type: DELETE_DATA,
+      payload: { labels: updatedLabels, updatedDataSets },
+    });
   };
 
   return (
@@ -97,13 +136,19 @@ const Header = ({ activeTab, setActiveTab, onClick }) => {
         </nav>
         <div className="button-container">
           {dataSets.length > 0 && (
-            <IconButton
-              iconName="delete"
-              iconSize={12}
-              fill="none"
-              stroke="red"
-              onClick={() => dispatch({ type: REMOVE_DATA_SETS })}
-            />
+            <Fragment>
+              {labels.length <= 5 && (
+                <ChartButton title="Add Data" onClick={() => addData()} />
+              )}
+
+              <ChartButton
+                title="Remove Dataset"
+                onClick={() => dispatch({ type: DELETE_DATASET })}
+              />
+              {labels.length > 0 && (
+                <ChartButton title="Remove Data" onClick={() => deleteData()} />
+              )}
+            </Fragment>
           )}
         </div>
       </div>

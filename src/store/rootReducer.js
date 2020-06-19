@@ -1,14 +1,19 @@
 import {
   GET_ALL_PLANETS,
   GET_BY_NAME,
-  ADD_DATA_SETS,
-  REMOVE_DATA_SETS,
+  DELETE_DATASET,
+  ADD_DATASET,
+  ADD_DATA,
+  DELETE_DATA,
 } from "./actions";
 
 export const initialState = {
   allPlanets: {},
   filterPlanets: {},
   dataSets: [],
+  counter: 0,
+  labels: [],
+  datas: [],
 };
 
 function reducer(state, action) {
@@ -17,12 +22,36 @@ function reducer(state, action) {
       return { ...state, allPlanets: action.payload };
     case GET_BY_NAME:
       return { ...state, filteredPlanets: action.payload };
-    case ADD_DATA_SETS:
-      return { ...state, dataSets: [...state.dataSets, action.payload] };
-    case REMOVE_DATA_SETS:
+    case ADD_DATASET:
+      let updatedDatas = [...state.datas];
+      updatedDatas.push(action.payload.datas);
+      return {
+        ...state,
+        dataSets: [...state.dataSets, action.payload.dataSet],
+        datas: updatedDatas,
+      };
+    case DELETE_DATASET:
       let updatedDataSets = new Array(...state.dataSets);
+      let updatedDatas2 = [...state.datas];
       updatedDataSets.pop();
-      return { ...state, dataSets: updatedDataSets };
+      updatedDatas2.pop();
+      return { ...state, dataSets: updatedDataSets, datas: updatedDatas2 };
+    case ADD_DATA:
+      let updatedLabels = [...state.labels];
+      updatedLabels.push(action.payload.label);
+      return {
+        ...state,
+        counter: state.counter + 1,
+        labels: updatedLabels,
+        dataSets: action.payload.updatedDataSets,
+      };
+    case DELETE_DATA:
+      return {
+        ...state,
+        counter: state.counter - 1,
+        labels: action.payload.labels,
+        dataSets: action.payload.updatedDataSets,
+      };
 
     default:
       throw new Error();
