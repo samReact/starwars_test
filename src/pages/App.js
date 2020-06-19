@@ -44,10 +44,10 @@ function App() {
           <div className="container">
             <Header activeTab={activeTab} setActiveTab={setActiveTab} />
             <Body activeTab={activeTab} ready={ready} />
-            {activeTab === 1 && (
-              <Footer previous={previous} next={next} handleNav={handleNav} />
-            )}
           </div>
+          {activeTab === 1 && (
+            <Footer previous={previous} next={next} handleNav={handleNav} />
+          )}
         </div>
       </StateContext.Provider>
     </DispatchContext.Provider>
