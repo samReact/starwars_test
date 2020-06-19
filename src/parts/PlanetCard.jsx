@@ -51,7 +51,7 @@ const PlanetCard = ({ planet }) => {
 
       const datas = [
         gravityNumber,
-        rotationNumber,
+        rotationNumber > 100 ? 100 : rotationNumber,
         orbitalNumber > 100 ? 100 : orbitalNumber,
         diameterNumber > 100 ? 100 : diameterNumber,
         surface_water,

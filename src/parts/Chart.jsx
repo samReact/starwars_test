@@ -24,6 +24,7 @@ const ChartPart = () => {
       options: {
         scale: {
           ticks: {
+            max: 100,
             min: 0,
           },
         },
