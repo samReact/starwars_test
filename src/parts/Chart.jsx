@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Chart from "chart.js";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -9,9 +9,12 @@ import { StateContext } from "../pages/App";
 const ChartPart = () => {
   let chartEl = useRef(null);
   const state = useContext(StateContext);
+  const [chart, setChart] = useState();
+
   const dataSets = state.dataSets;
+
   useEffect(() => {
-    new Chart(chartEl.current, {
+    let chart = new Chart(chartEl.current, {
       type: "radar",
       data: {
         labels: [
@@ -27,13 +30,21 @@ const ChartPart = () => {
       options: {
         scale: {
           ticks: {
-            max: 100,
+            // max: 100,
             min: 0,
-            stepSize: 20,
+            // stepSize: 20,
           },
         },
       },
     });
+    setChart(chart);
+  }, []);
+
+  useEffect(() => {
+    if (chart) {
+      chart.data.datasets = dataSets;
+      chart.update();
+    }
   }, [dataSets]);
 
   return (
