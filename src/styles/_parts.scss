@@ -1,5 +1,5 @@
 .body {
-  height: 40vh;
+  height: 30vh;
 }
 
 .card-list {
@@ -30,13 +30,17 @@
 }
 
 .header {
-  height: 40vh;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header-container {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
+  height: 100%;
 }
 
 .menu-container {
