@@ -3,7 +3,7 @@
 ### Running the project locally
 
 1. Clone the repository
-   `git clone https://github.com/tifus69/starwars_test.git`
+   `git clone https://github.com/samReact/starwars_test.git`
 
 2. Go to the correct folder
    `cd starwars_test`
